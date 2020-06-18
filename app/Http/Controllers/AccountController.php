@@ -23,9 +23,12 @@ class AccountController extends Controller
         if (request()->isMethod('post')) {
             return request('id') ? $this->update() : $this->store();
         }
-        return $this->view('edit', [
-            'd' => request('id') ? $this->builder()->find(request('id')) : null,
-        ]);
+        if(! request('id')) {
+            return $this->view('edit');
+        }
+        $d = $this->builder()->find(request('id'));
+        $d->password = decrypt($d->password);
+        return $this->view('edit', ['d' => $d]);
     }
 
     public function store()
