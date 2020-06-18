@@ -34,6 +34,7 @@ class AccountController extends Controller
             'applicationId' => 'required|exists:applications,id',
             'username' => 'required',
             'password' => 'required',
+            'note' => '',
         ];
         $this->vld($rules);
         $exists = $this->builder()->where([
@@ -58,6 +59,7 @@ class AccountController extends Controller
             'applicationId' => 'required|exists:applications,id',
             'username' => 'required',
             'password' => 'required',
+            'note' => '',
         ];
         $this->vld($rules);
         $item = $this->builder()->find(request('id'));
