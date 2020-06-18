@@ -57,7 +57,7 @@
                 @component('piece.init')@endcomponent
             }
         })
-        $enter(() => vue.submit())
+        $enter(() => $submit(vue.form))
     </script>
 @endsection
 
