@@ -47,6 +47,7 @@ class ApplicationController extends Controller
         ];
         $this->vld($rules);
         $item = $this->builder()->find(request('id'));
+        $this->authorize('update', $item);
         $item->fill(request()->only(array_keys($rules)));
         $item->save();
         return $this->viewOk('edit', ['d' => $item]);
@@ -62,12 +63,15 @@ class ApplicationController extends Controller
         $this->vld($rules);
         $ids = request('ids') ?? [];
         request('id') && $ids[] = request('id');
-        foreach ($ids as $id) {
-            if (Account::query()->withoutGlobalScope('my')->where('application_id', $id)->exists()) {
+        $apps = $this->builder()->whereIn('id', $ids)->with(['accounts' => function($q) {
+            $q->withoutGlobalScope('my');
+        }])->get();
+        foreach ($apps as $app) {
+            $this->authorize('delete', $app);
+            if ($app->accounts) {
                 return $this->backErr('there are accounts in the app' . (count($ids) > 1 ? 's' : '') . ', delete accounts before delete app (if these accounts are all yours)');
             }
         }
-        $this->builder()->whereIn('id', $ids)->delete();
         return $this->backOk();
     }
 
