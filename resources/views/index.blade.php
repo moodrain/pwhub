@@ -59,7 +59,7 @@ new Vue({
 @section('style')
 <style>
     .el-collapse-item__header {
-        font-size: .85em;
+        font-size: .8em;
     }
     .el-collapse-item__content {
         padding-bottom: 40px !important;
