@@ -18,8 +18,8 @@ class CreateAccountsTable extends Migration
             $table->integer('user_id');
             $table->integer('application_id');
             $table->string('username');
-            $table->string('password');
-            $table->string('note')->nullable();
+            $table->text('password');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }
