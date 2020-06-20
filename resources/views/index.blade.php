@@ -11,6 +11,10 @@
                 No Data
             </el-card>
 
+            <el-card v-if="apps.length !== 0" :lg="4" style="margin-bottom: 10px">
+                <el-button class="clipboard-btn" icon="el-icon-refresh-right" data-clipboard-text="PwHub"></el-button>
+            </el-card>
+
             <el-card v-if="apps.length > 0">
                 <el-collapse v-model="activeName" accordion>
 
