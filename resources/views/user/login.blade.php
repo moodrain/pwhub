@@ -7,7 +7,7 @@
             <el-col :xs="{span:20,offset:2}" :lg="{span:6,offset:9}">
                 <el-card>
                     <el-form>
-                        <x-input exp="model:form.email;pre:Email;ref=email"></x-input>
+                        <x-input exp="model:form.email;pre:Email;ref:email"></x-input>
                         <x-input exp="model:form.password;pre:Password;type:password"></x-input>
                         <el-form-item>
                             <el-button @click="login">Login</el-button>
