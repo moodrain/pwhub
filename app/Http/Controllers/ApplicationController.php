@@ -68,7 +68,7 @@ class ApplicationController extends Controller
         }])->get();
         foreach ($apps as $app) {
             $this->authorize('delete', $app);
-            if ($app->accounts->isNotEmpty) {
+            if ($app->accounts->isNotEmpty()) {
                 return $this->backErr('there are accounts in the app' . (count($ids) > 1 ? 's' : '') . ', delete accounts before delete app (if these accounts are all yours)');
             }
         }
