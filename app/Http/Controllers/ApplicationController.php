@@ -71,6 +71,7 @@ class ApplicationController extends Controller
             if ($app->accounts->isNotEmpty()) {
                 return $this->backErr('there are accounts in the app' . (count($ids) > 1 ? 's' : '') . ', delete accounts before delete app (if these accounts are all yours)');
             }
+            $app->delete();
         }
         return $this->backOk();
     }
